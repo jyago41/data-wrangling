@@ -26,17 +26,7 @@ diabetes
 ```
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead th {
-        text-align: right;
-    }
-</style>
+
 
 |  | Age | gender | ethnicity | education_level | income_level | employment_status | smoking_status | alcohol_consumption_per_week | physical_activity_minutes_per_week | diet_score | ... | hdl_cholesterol | ldl_cholesterol | triglycerides | glucose_fasting | glucose_postprandial | insulin_level | hba1c | diabetes_risk_score | diabetes_stage | diagnosed_diabetes |
 |----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|

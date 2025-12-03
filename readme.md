@@ -3,6 +3,7 @@ Josh Yago
 
 Introduction
 
+
 I chose the diabetes dataset for a personal reason. One of my closest
 friends has lived with Type 1 diabetes for as long as I have known him.
 Even though this dataset focuses on diagnosed diabetes more broadly,
@@ -15,6 +16,8 @@ My goal was not just to run models, but to tell a meaningful story about
 what influences diabetes and how data can help us understand a condition
 that affects millions of people.
 
+
+
 Understanding the Dataset
 
 ``` python
@@ -24,6 +27,7 @@ diabetes = pd.read_csv("/Users/joshyago/Downloads/Diabetes_and_LifeStyle_Dataset
 
 diabetes
 ```
+
 
 <div>
 
@@ -44,6 +48,9 @@ diabetes
 
 <p>97297 rows × 31 columns</p>
 </div>
+
+
+
 
 I want to inspect the data and see all of the columns, the
 average/max/min number of each column, and gain a little bit better of
@@ -96,6 +103,8 @@ diabetes.shape
 
     (97297, 31)
 
+
+
 I wanted to see what percentage of the dataset was diagnosed with
 diabetes, with type 2 being the most common.
 
@@ -109,9 +118,12 @@ diabetes["diagnosed_diabetes"].value_counts(normalize=True)
     0    0.399961
     Name: proportion, dtype: float64
 
+
+
 I want to summarize all categorical variables without manually typing
 each one. Datasets can have many categorical columns, so this step
 automates the process.
+
 
 ``` python
 categorical_cols = diabetes.select_dtypes(include='object').columns
@@ -185,6 +197,8 @@ summaries reveal patterns, validate expectations, and help identify
 which variables may play important roles in predicting diabetes
 outcomes.
 
+
+
 ``` python
 diabetes.groupby("gender")["diabetes_risk_score"].mean()
 diabetes.groupby("diabetes_stage")["hba1c"].mean()
@@ -202,21 +216,12 @@ diabetes.groupby("diabetes_stage")["hba1c"].mean()
 diabetes.groupby("smoking_status")[["bmi", "physical_activity_minutes_per_week", "diet_score"]].agg(["mean"])
 ```
 
+
+
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead tr th {
-        text-align: left;
-    }
-&#10;    .dataframe thead tr:last-of-type th {
-        text-align: right;
-    }
-</style>
+
+
+
 
 |                | bmi       | physical_activity_minutes_per_week | diet_score |
 |----------------|-----------|------------------------------------|------------|
@@ -227,6 +232,8 @@ diabetes.groupby("smoking_status")[["bmi", "physical_activity_minutes_per_week",
 | Never          | 25.619235 | 119.170480                         | 5.985922   |
 
 </div>
+
+
 
 Visual Exploration
 
@@ -259,6 +266,7 @@ plt.show()
 
 ![](readme_files/figure-commonmark/cell-8-output-1.png)
 
+
 This scatterplot highlights the relationship between glucose levels and
 HbA1c, two key clinical indicators used in diagnosing diabetes. By
 visualizing these variables together, I can assess whether the dataset
@@ -267,6 +275,7 @@ generally correspond to higher HbA1c. This plot helps validate the
 internal consistency of the dataset and reinforces the biological
 connection between blood glucose regulation and long-term glycemic
 control.
+
 
 ``` python
 # 2. Scatterplot: Glucose vs HbA1c
@@ -279,6 +288,7 @@ plt.show()
 
 ![](readme_files/figure-commonmark/cell-9-output-1.png)
 
+
 I generated this boxplot to explore how BMI differs across smoking
 groups and to evaluate whether smoking behavior is associated with
 weight-related health differences. Smoking is a major lifestyle factor,
@@ -286,6 +296,7 @@ and BMI is a major metabolic health indicator, so comparing the two can
 reveal important behavioral–health patterns in the dataset. This plot
 helps show whether smokers or former smokers tend to have higher BMI
 levels, which can influence diabetes risk.
+
 
 ``` python
 #3. Boxplot: BMI by Smoking Status
@@ -383,17 +394,7 @@ diabetes_subset
 ```
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead th {
-        text-align: right;
-    }
-</style>
+
 
 |                    | glucose_fasting | hba1c    | bmi       | diabetes_risk_score |
 |--------------------|-----------------|----------|-----------|---------------------|
@@ -412,17 +413,7 @@ diabetes.groupby("employment_status")[["physical_activity_minutes_per_week", "bm
 ```
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead th {
-        text-align: right;
-    }
-</style>
+
 
 |  | physical_activity_minutes_per_week | bmi | diabetes_risk_score |
 |----|----|----|----|
@@ -444,17 +435,7 @@ diabetes.groupby("income_level")[["diabetes_risk_score", "hba1c", "bmi"]].mean()
 ```
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead th {
-        text-align: right;
-    }
-</style>
+
 
 |              | diabetes_risk_score | hba1c    | bmi       |
 |--------------|---------------------|----------|-----------|
@@ -503,17 +484,7 @@ diet_expanded
 ```
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead th {
-        text-align: right;
-    }
-</style>
+
 
 |  | diabetes_risk_score | bmi | hba1c | glucose_fasting | glucose_postprandial | hdl_cholesterol | ldl_cholesterol | triglycerides |
 |----|----|----|----|----|----|----|----|----|
@@ -523,6 +494,8 @@ diet_expanded
 | Moderate Diet Quality | 30.581888 | 25.797185 | 6.535034 | 111.403365 | 160.503366 | 53.946821 | 103.526006 | 122.334423 |
 
 </div>
+
+
 
 Model
 
@@ -635,6 +608,8 @@ print("Accuracy:", accuracy_score(y_test, y_pred))
 
     Accuracy: 0.8583761562178829
 
+
+
 Interpretation of Results
 
 The logistic regression model identified several strong and meaningful
@@ -676,6 +651,8 @@ is deeply connected to overall metabolic function.
 Taken together, the results form a concise understanding: diabetes risk
 is driven by chronic glucose levels, family history, aging, lifestyle
 behaviors, and metabolic health.
+
+
 
 Conclusion
 
